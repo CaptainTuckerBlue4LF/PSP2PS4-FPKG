@@ -29,7 +29,7 @@ ECHO               .++++-#-#+++-##...++#.#.###.#.##+.+#.....--......+##.###.##+-
 ECHO               .++++++-#############################################################+--+++++++++++++.
 ECHO               .+++++++--...---.................---.---............................--+++++++++++++++.
 ECHO               ......................................................................................
-ECHO.  
+ECHO.
 echo ............%DATE%.....Press Enter!!
 pause >nul
 (goto mainmenu)
@@ -42,7 +42,7 @@ echo.
 echo ========================================================================================================================
 echo                                    PSP Classic Game Emulators for Ps4 V1.0
 echo ========================================================================================================================
-echo.                                                  
+echo.
 echo                            -------------------------------------------------------------
 echo.
 echo                                             [1] New PSP Emulation!!
@@ -88,12 +88,16 @@ echo "                                        "
 echo "  [1] Tekken 6   v1 - FW 5.05/9.00      "
 echo "                                        "
 echo "  [2] Killzone   V1 - FW 5.05/9.00      "
-echo "                                        " 
-echo "  [3] Resistance V1 - FW 9.00           " 
-echo "                                        " 
-echo "  [4] MediEvil   V2 - FW 5.05/9.00      " 
-echo "                                        " 
+echo "                                        "
+echo "  [3] Resistance V1 - FW 9.00           "
+echo "                                        "
+echo "  [4] MediEvil   V2 - FW 5.05/9.00      "
+echo "                                        "
 echo "  [5] PSP Emulation Versions list       "
+echo "                                        "
+echo "  [6] Dumper.pkg                        "
+echo "                                        "
+echo "  [7] ReplaceFiles.pkg                  "
 echo "                                        "
 echo ========================================================================================================================
 echo.
@@ -104,15 +108,18 @@ echo.
 @if /i "%choice%"=="3" (GOTO unpkgEmu3)
 @if /i "%choice%"=="4" (GOTO unpkgEmu4)
 @if /i "%choice%"=="5" (GOTO SOON)
+@if /i "%choice%"=="6" (GOTO unpkgEmu5)
+@if /i "%choice%"=="7" (GOTO unpkgEmu6)
 (goto pspemu)
 ::================================================================================================================
 :: SOON TOOL!!
 ::================================================================================================================
 :SOON
-echo   .dP"Y8  dP"Yb   dP"Yb  88b 88 
-echo    `Ybo." dP   Yb dP   Yb 88Yb88 
-echo    o.`Y8b Yb   dP Yb   dP 88 Y88 
-echo    8bodP'  YbodP   YbodP  88  Y8 
+echo   .dP"Y8  dP"Yb   dP"Yb  88b 88
+echo    `Ybo."
+echo dP   Yb dP   Yb 88Yb88
+echo    o.`Y8b Yb   dP Yb   dP 88 Y88
+echo    8bodP'  YbodP   YbodP  88  Y8
 echo.
 echo    [!] I WILL ADD THIS TOOLS IN NEXT UPDATE [!]
 echo.
@@ -120,7 +127,7 @@ echo .....Press Enter!!
 pause >nul
 (goto pspemu)
 ::================================================================================================================
-:: Name Emu!! 
+:: Name Emu!!
 ::================================================================================================================
 :unpkgEmu1
 @set Emupkgname=Tekken6v1
@@ -138,6 +145,14 @@ pause >nul
 @set Emupkgname=MediEvilv2
 @set Emuname=MediEvil Resurrection v2
 (goto unemu)
+:unpkgEmu5
+@set Emupkgname=Dumper
+@set Emuname=Dumper.pkg
+(goto unemu)
+:unpkgEmu6
+@set Emupkgname=ReplaceFiles
+@set Emuname=ReplaceFiles.pkg
+(goto unemu)
 ::================================================================================================================
 :unemu
 if not exist ".\Image0\eboot.bin" (
@@ -146,7 +161,8 @@ goto noemu
 @rd /s ".\Image0" /q
 :noemu
 echo.
-echo                                          [32mThe PKG is decrypt...!!!![0m
+echo                                           [32mThe PKG is decrypt...!!!!
+echo [0m
 .\tools\orbis-pub-cmd.exe img_extract --passcode 00000000000000000000000000000000 .\pspemu\%Emupkgname%.pkg "." >nul
 @ren .\Sc0 sce_sys >nul
 @xcopy ".\sce_sys" ".\image0\sce_sys" /e /i >nul
@@ -159,7 +175,7 @@ echo                                          [32mThe PKG is decrypt...!!!![0m
 @del .\image0\*.plt >nul
 @rd /s ".\image0\sce_sys\about" /q >nul
 echo.
-echo  [92mDone!![0m
+echo   [92mDone!! [0m
 echo.
 echo ========================================================================================================================
 echo.
@@ -180,7 +196,7 @@ echo "| | | ___) | |_| / __/ | || |\  | |_| ||";
 echo "||___|____/ \___/_____|___|_| \_|\____||";
 echo "+======================================+";
 echo.
-echo  ...Drag and drop game "ISO" [36m(.ISO/CSO)[0m and press Enter:
+echo  ...Drag and drop game "ISO"  [36m(.ISO/CSO) [0m and press Enter:
 echo.
 @set /p iso="ISO 2 ING Press Enter": >nul
 echo.
@@ -193,7 +209,7 @@ ECHO.
 del .\game\PSP_GAME\SYSDIR\EBOOT.BIN
 ren .\game\PSP_GAME\SYSDIR\EBOOT.BIN.dec EBOOT.BIN
 echo.
-echo  [92mDone!![0m
+echo   [92mDone!! [0m
 PAUSE >nul
 (goto Serial)
 :Serial
@@ -206,13 +222,15 @@ echo ===========================================================================
 echo.
 echo.  follow Copy Serial/Name of the game - [Region NTSC-U/NTSC-J/PAL]
 echo.
-echo ....(eg [94mNTSC-U:[0m ULUS*****, UCUS*****,)
-echo ....(eg [95mPAL:[0m    ULES*****, ULES*****, WPSE*****,)
-echo ....(eg [97mNTSC-J:[0m NPJH*****, ULJM*****,)
+echo ....(eg  [94mNTSC-U: [0m ULUS*****, UCUS*****,)
+echo ....(eg  [95mPAL: [0m    ULES*****, ULES*****, WPSE*****,)
+echo ....(eg  [97mNTSC-J: [0m NPJH*****, ULJM*****,)
 echo .
 echo ====================================================================================================================
-echo             WARNING!! I DON'T Use Enter "ULUS-00000" i Likes "ULUS00000" !! Only Serial or Name of game!
-echo             WARNING!! I DON'T Use Enter not Working is "ULUS-00000#v1.00.IMG", Working on "ULUS00000#v1.00.IMG"!!
+echo             WARNING!!
+echo I DON'T Use Enter "ULUS-00000" i Likes "ULUS00000" !! Only Serial  or Name of game!
+echo             WARNING!!
+echo I DON'T Use Enter not Working is "ULUS-00000#v1.00.IMG", Working on "ULUS00000#v1.00.IMG"!!
 echo ====================================================================================================================
 echo.
 echo.
@@ -223,14 +241,14 @@ echo.
 ) > ".\config-region.txt"
 echo.
 @echo --active-sku="%Serial%#v1.00">.\config-region.txt
-echo. 
+echo.
 .\tools\mkisofs -iso-level 4 -o img/%Serial%#v1.00/USER_L0.IMG ./game
 @rd /s "./game/PSP_GAME" /q
 @del .\game\UMD_DATA.BIN
 @ren img\%Serial%#v1.00\USER_L0.IMG "%Serial%#v1.00.IMG"
 @move .\config-region.txt img\%Serial%#v1.00\config-region.txt >nul
 echo.
-echo  [92mDone!![0m
+echo   [92mDone!! [0m
 echo.
 @start img\
 (goto mainmenu)
@@ -256,7 +274,7 @@ ren image0.txt image0.gp4
 cls
 .\tools\orbis-pub-cmd.exe img_create image0.gp4 .\pkg\pspemu.pkg
 del image0.gp4
-echo  [92mDone!![0m
+echo   [92mDone!! [0m
 echo.
 @start .\pkg
 pause >nul
